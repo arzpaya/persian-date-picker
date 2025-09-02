@@ -1,0 +1,69 @@
+{
+  "name": "arzpaya-persian-date-picker",
+  "version": "1.0.0",
+  "description": "A beautiful and modern Persian (Jalali) date picker component for Vue 3",
+  "main": "dist/index.es.js",
+  "module": "dist/index.es.js",
+  "unpkg": "dist/index.umd.js",
+  "jsdelivr": "dist/index.umd.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "preview": "vite preview",
+    "test": "vitest",
+    "lint": "eslint src --ext .vue,.js,.ts",
+    "format": "prettier --write src"
+  },
+  "keywords": [
+    "vue",
+    "vue3",
+    "datepicker",
+    "jalali",
+    "persian",
+    "calendar",
+    "iran",
+    "shamsi",
+    "component"
+  ],
+  "author": {
+    "name": "arzpaya",
+    "email": "dev@arzpaya.com"
+  },
+  "contributors": [
+    {
+      "name": "Ayeen Sepehri",
+      "email": "sepehriayeen96prgr@gmail.com"
+    }
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/vue-persian-date-picker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/vue-persian-date-picker/issues"
+  },
+  "homepage": "https://github.com/yourusername/vue-persian-date-picker#readme",
+  "dependencies": {
+    "moment-jalaali": "^0.9.6"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.0.0",
+    "vite": "^4.0.0",
+    "vue": "^3.0.0",
+    "sass": "^1.60.0",
+    "eslint": "^8.0.0",
+    "prettier": "^2.8.0",
+    "vitest": "^0.30.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

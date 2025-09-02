@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Persian Date Picker Example</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .example-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+        .example-title {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .selected-date {
+            background: #e3f2fd;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 15px;
+            color: #1976d2;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <h1>Vue Persian Date Picker Examples</h1>
+            
+            <div class="example-section">
+                <div class="example-title">Basic Usage</div>
+                <persian-date-picker
+                    v-model="basicDate"
+                    button-text="انتخاب تاریخ"
+                />
+                <div class="selected-date">
+                    تاریخ انتخاب شده: {{ basicDate || 'هیچ تاریخی انتخاب نشده' }}
+                </div>
+            </div>
+
+            <div class="example-section">
+                <div class="example-title">With Age Range (18-65)</div>
+                <persian-date-picker
+                    v-model="ageRestrictedDate"
+                    :min-age="18"
+                    :max-age="65"
+                    button-text="انتخاب تاریخ تولد"
+                />
+                <div class="selected-date">
+                    تاریخ تولد: {{ ageRestrictedDate || 'انتخاب نشده' }}
+                </div>
+            </div>
+
+            <div class="example-section">
+                <div class="example-title">With Initial Date</div>
+                <persian-date-picker
+                    v-model="initialDate"
+                    initial-date="1370/06/15"
+                    button-text="تایید"
+                />
+                <div class="selected-date">
+                    تاریخ: {{ initialDate || 'انتخاب نشده' }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { createApp } from 'vue'
+        import PersianDatePicker from './index.js'
+
+        const app = createApp({
+            data() {
+                return {
+                    basicDate: '',
+                    ageRestrictedDate: '',
+                    initialDate: ''
+                }
+            }
+        })
+
+        app.use(PersianDatePicker)
+        app.mount('#app')
+    </script>
+</body>
+</html>
+

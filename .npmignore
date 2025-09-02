@@ -1,0 +1,47 @@
+# Source files (not needed in distribution)
+src/
+example.html
+
+# Development files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build tools
+vite.config.js
+.eslintrc.js
+.prettierrc
+
+# Git files
+.git/
+.gitignore
+
+# Documentation (keep README, LICENSE, and AUTHORS)
+CHANGELOG.md
+AUTHORS.md
+
+# Development dependencies
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Test files
+test/
+tests/
+*.test.js
+*.spec.js
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Cache
+.cache/
+.parcel-cache/
