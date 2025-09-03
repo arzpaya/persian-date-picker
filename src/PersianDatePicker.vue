@@ -372,7 +372,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .persian-date-picker {
   padding: 20px;
   display: flex;
@@ -447,20 +447,18 @@ export default {
   transition: all 0.3s ease;
   cursor: pointer;
   user-select: none;
+}
 
-  &:not(.picker-item-selected) {
-    &:hover {
-      color: #3d72fe;
-      transform: scale(1.05);
-    }
-  }
+.picker-item:not(.picker-item-selected):hover {
+  color: #3d72fe;
+  transform: scale(1.05);
+}
 
-  &-selected {
-    color: #003dcc;
-    font-weight: bold;
-    font-size: 18px;
-    text-shadow: 0 0 1px rgba(61, 114, 254, 0.2);
-  }
+.picker-item-selected {
+  color: #003dcc;
+  font-weight: bold;
+  font-size: 18px;
+  text-shadow: 0 0 1px rgba(61, 114, 254, 0.2);
 }
 
 .actions {
@@ -476,16 +474,17 @@ export default {
   height: 44px;
   font-weight: 500;
   transition: all 0.3s ease;
-
-  q-btn:hover {
-    background: #3d72fe;
-    color: white !important
-  }
-
-  &:active {
-    transform: scale(0.98);
-  }
 }
+
+.q-btn:hover {
+  background: #3d72fe;
+  color: white !important;
+}
+
+.q-btn:active {
+  transform: scale(0.98);
+}
+
 .submit-button {
   width: 100%;
   border: 1px solid #3d72fe;
@@ -497,14 +496,14 @@ export default {
   transition: all 0.3s ease;
   cursor: pointer;
   background-color: transparent;
+}
 
-  &:hover {
-    background: #3d72fe;
-    color: white !important;
-  }
+.submit-button:hover {
+  background: #3d72fe;
+  color: white !important;
+}
 
-  &:active {
-    transform: scale(0.98);
-  }
+.submit-button:active {
+  transform: scale(0.98);
 }
 </style>
