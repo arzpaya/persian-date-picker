@@ -90,7 +90,7 @@ export default {
     buttonText: { type: String, default: 'تایید' },
     direction: {
       type: String,
-      default: 'rtl',
+      default: 'ltr',
       validator: (value) => ['rtl', 'ltr'].includes(value)
     }
   },
