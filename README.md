@@ -17,7 +17,7 @@ A beautiful and modern Persian (Jalali) date picker component for Vue 3 with tou
 ## Installation
 
 ```bash
-npm install vue-persian-date-picker
+npm install arzpaya-persian-date-picker
 ```
 
 ## Usage
@@ -33,7 +33,7 @@ npm install vue-persian-date-picker
 </template>
 
 <script>
-import { PersianDatePicker } from 'vue-persian-date-picker'
+import { PersianDatePicker } from 'arzpaya-persian-date-picker'
 
 export default {
   components: { PersianDatePicker },
@@ -44,6 +44,8 @@ export default {
   }
 }
 </script>
+
+<!-- نیازی به ایمپورت دستی CSS نیست. CSS به صورت خودکار تزریق می‌شود. -->
 ```
 
 ## Props
