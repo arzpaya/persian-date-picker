@@ -1,75 +1,55 @@
 <template>
   <div class="persian-date-picker">
     <div class="picker-container">
-      <!-- Year Picker -->
-      <div class="picker-column">
+      <div
+        class="picker-column"
+        v-for="type in columnsOrder"
+        :key="type"
+      >
         <div class="picker-mask"></div>
         <div class="picker-indicator"></div>
         <div
           class="picker-content"
-          ref="yearPicker"
-          @touchstart="onTouchStart($event, 'year')"
-          @touchmove="onTouchMove($event, 'year')"
-          @touchend="onTouchEnd('year')"
-          @wheel="onWheel($event, 'year')"
+          @touchstart="onTouchStart($event, type)"
+          @touchmove="onTouchMove($event, type)"
+          @touchend="onTouchEnd(type)"
+          @wheel="onWheel($event, type)"
         >
-          <div
-            v-for="(year, index) in displayYears"
-            :key="`${year}-${index}`"
-            class="picker-item"
-            :class="{ 'picker-item-selected': selectedYear === year }"
-            :style="getItemStyle(index, 'year')"
-          >
-            {{ year }}
-          </div>
-        </div>
-      </div>
+          <template v-if="type === 'year'">
+            <div
+              v-for="(year, index) in displayYears"
+              :key="`${year}-${index}`"
+              class="picker-item"
+              :class="{ 'picker-item-selected': selectedYear === year }"
+              :style="getItemStyle(index, 'year')"
+            >
+              {{ year }}
+            </div>
+          </template>
 
-      <!-- Month Picker -->
-      <div class="picker-column">
-        <div class="picker-mask"></div>
-        <div class="picker-indicator"></div>
-        <div
-          class="picker-content"
-          ref="monthPicker"
-          @touchstart="onTouchStart($event, 'month')"
-          @touchmove="onTouchMove($event, 'month')"
-          @touchend="onTouchEnd('month')"
-          @wheel="onWheel($event, 'month')"
-        >
-          <div
-            v-for="(month, index) in displayMonths"
-            :key="`${month.value}-${index}`"
-            class="picker-item"
-            :class="{ 'picker-item-selected': selectedMonth === month.value }"
-            :style="getItemStyle(index, 'month')"
-          >
-            {{ month.label }}
-          </div>
-        </div>
-      </div>
+          <template v-else-if="type === 'month'">
+            <div
+              v-for="(month, index) in displayMonths"
+              :key="`${month.value}-${index}`"
+              class="picker-item"
+              :class="{ 'picker-item-selected': selectedMonth === month.value }"
+              :style="getItemStyle(index, 'month')"
+            >
+              {{ month.label }}
+            </div>
+          </template>
 
-      <!-- Day Picker -->
-      <div class="picker-column">
-        <div class="picker-mask"></div>
-        <div class="picker-indicator"></div>
-        <div
-          class="picker-content"
-          ref="dayPicker"
-          @touchstart="onTouchStart($event, 'day')"
-          @touchmove="onTouchMove($event, 'day')"
-          @touchend="onTouchEnd('day')"
-          @wheel="onWheel($event, 'day')"
-        >
-          <div
-            v-for="(day, index) in displayDays"
-            :key="`${day}-${index}`"
-            class="picker-item"
-            :class="{ 'picker-item-selected': selectedDay === day }"
-            :style="getItemStyle(index, 'day')"
-          >
-            {{ day }}
-          </div>
+          <template v-else>
+            <div
+              v-for="(day, index) in displayDays"
+              :key="`${day}-${index}`"
+              class="picker-item"
+              :class="{ 'picker-item-selected': selectedDay === day }"
+              :style="getItemStyle(index, 'day')"
+            >
+              {{ day }}
+            </div>
+          </template>
         </div>
       </div>
     </div>
@@ -107,7 +87,12 @@ export default {
       type: String,
       default: ''
     },
-    buttonText: { type: String, default: 'تایید' }
+    buttonText: { type: String, default: 'تایید' },
+    direction: {
+      type: String,
+      default: 'rtl',
+      validator: (value) => ['rtl', 'ltr'].includes(value)
+    }
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
@@ -186,6 +171,12 @@ export default {
 
     const displayDays = computed(() => {
       return createCircularArray(days.value, selectedDay.value)
+    })
+
+    const columnsOrder = computed(() => {
+      return props.direction === 'rtl'
+        ? ['year', 'month', 'day']
+        : ['day', 'month', 'year']
     })
 
     function createCircularArray(sourceArray, currentItem) {
@@ -360,6 +351,7 @@ export default {
       displayYears,
       displayMonths,
       displayDays,
+      columnsOrder,
       scrollOffsets,
       onTouchStart,
       onTouchMove,
