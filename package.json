@@ -1,6 +1,6 @@
 {
   "name": "arzpaya-persian-date-picker",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A beautiful and modern Persian (Jalali) date picker component for Vue 3",
   "main": "dist/index.es.js",
   "module": "dist/index.es.js",
