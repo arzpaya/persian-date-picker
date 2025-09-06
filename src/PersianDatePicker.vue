@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import moment from 'moment-jalaali'
 
 export default {
@@ -100,13 +100,16 @@ export default {
     const ITEM_HEIGHT = 20 // Height of each item in pixels
     const MIDDLE_INDEX = Math.floor(VISIBLE_ITEMS / 2)
 
-    // Set initial values based on initialDate prop or defaults
+    // Set initial values based on modelValue, initialDate prop, or defaults
     let initialYear = 1365
     let initialMonth = 1
     let initialDay = 1
 
-    if (props.initialDate) {
-      const [year, month, day] = props.initialDate.split('/')
+    // Priority: modelValue > initialDate > defaults
+    const dateToUse = props.modelValue || props.initialDate
+
+    if (dateToUse) {
+      const [year, month, day] = dateToUse.split('/')
       const currentYear = parseInt(moment().format('jYYYY'))
       const minYear = currentYear - props.maxAge
       const maxYear = currentYear - props.minAge
@@ -127,6 +130,27 @@ export default {
     const selectedMonth = ref(initialMonth)
     const selectedDay = ref(initialDay)
     const scrollOffsets = ref({ year: 0, month: 0, day: 0 })
+
+    // Watch for modelValue changes to update the selected date
+    watch(() => props.modelValue, (newValue) => {
+      if (newValue) {
+        const [year, month, day] = newValue.split('/')
+        const currentYear = parseInt(moment().format('jYYYY'))
+        const minYear = currentYear - props.maxAge
+        const maxYear = currentYear - props.minAge
+
+        let validYear = parseInt(year)
+        if (validYear > maxYear || validYear > currentYear) {
+          validYear = maxYear
+        } else if (validYear < minYear) {
+          validYear = minYear
+        }
+
+        selectedYear.value = validYear
+        selectedMonth.value = parseInt(month)
+        selectedDay.value = parseInt(day)
+      }
+    })
 
     // Base data
     const years = computed(() => {

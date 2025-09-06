@@ -82,6 +82,26 @@
                     تاریخ: {{ initialDate || 'انتخاب نشده' }}
                 </div>
             </div>
+
+            <div class="example-section">
+                <div class="example-title">Test Date Persistence (تست حفظ تاریخ)</div>
+                <p style="color: #666; margin-bottom: 15px;">
+                    یک تاریخ انتخاب کنید و تایید کنید، سپس کامپوننت را دوباره باز کنید تا ببینید تاریخ حفظ شده است:
+                </p>
+                <persian-date-picker
+                    v-model="persistentDate"
+                    button-text="انتخاب و تایید"
+                />
+                <div class="selected-date">
+                    تاریخ انتخاب شده: {{ persistentDate || 'هیچ تاریخی انتخاب نشده' }}
+                </div>
+                <button 
+                    @click="resetDate" 
+                    style="margin-top: 10px; padding: 8px 16px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;"
+                >
+                    پاک کردن تاریخ
+                </button>
+            </div>
         </div>
     </div>
 
@@ -94,7 +114,13 @@
                 return {
                     basicDate: '',
                     ageRestrictedDate: '',
-                    initialDate: ''
+                    initialDate: '',
+                    persistentDate: ''
+                }
+            },
+            methods: {
+                resetDate() {
+                    this.persistentDate = ''
                 }
             }
         })
